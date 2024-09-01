@@ -20,6 +20,10 @@ public class AuthorController {
         return ResponseEntity.ok(authService.findById(id));
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<?>  findByEmail(String email) {
+        return ResponseEntity.ok(authService.findByEmail(email));
+    }
     @GetMapping
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(authService.findAll());
@@ -33,6 +37,11 @@ public class AuthorController {
     @PutMapping("")
     public ResponseEntity<?> update(@RequestBody @Valid Author entity) {
         return ResponseEntity.ok(authService.update(entity));
+    }
+    @PutMapping("/custom")
+    public ResponseEntity<?>   updateByEmail(@RequestParam String email,@RequestParam String name,@RequestParam String phone){
+        authService.updateByEmail(email,name,phone);
+        return ResponseEntity.ok(null);
     }
 
     @DeleteMapping("/{id}")

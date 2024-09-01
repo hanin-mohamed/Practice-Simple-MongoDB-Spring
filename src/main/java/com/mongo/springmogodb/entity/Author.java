@@ -1,16 +1,23 @@
 package com.mongo.springmogodb.entity;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "authors")
 public class Author {
     @Id
     private String id;
+
     @NotEmpty
     private String name;
+
+    @Email
+    @Indexed(unique = false)
     private String email;
+
     private String phone;
 
     public String getId() {
